@@ -1,7 +1,7 @@
 import React from 'react'
 import axios, { post } from 'axios';
 
-class SimpleReactFileUpload extends React.Component {
+class FileUploader extends React.Component {
 
     constructor(props) {
         super(props);
@@ -16,7 +16,8 @@ class SimpleReactFileUpload extends React.Component {
         //e.preventDefault(); // Stop form submit
         this.fileUpload(this.state.file).then((response)=>{
             console.log(response.data);
-        })
+        });
+        e.preventDefault();
     }
     onChange(e) {
         this.setState({file:e.target.files[0]})
@@ -31,7 +32,10 @@ class SimpleReactFileUpload extends React.Component {
                 'content-type': 'multipart/form-data'
             }
         }
-        return  post(url, formData,config)
+        return  axios.post(url, formData,config).then(res => {
+            console.log(res.statusText);
+            debugger;
+        })
         //todo va a tener un map con lo que quiera hacer con lo que devuelva el back (el file encriptado)
     }
 
@@ -48,4 +52,4 @@ class SimpleReactFileUpload extends React.Component {
 
 
 
-export default SimpleReactFileUpload
+export default FileUploader

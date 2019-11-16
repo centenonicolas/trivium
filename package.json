@@ -1,20 +1,50 @@
 {
   "name": "trivium",
   "version": "0.1.0",
+  "description": "App for the reproduction of Trivium algorithm",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Microsoft/TypeScript-Node-Starter"
+  },
   "dependencies": {
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "react-scripts": "0.9.5"
+    "react-scripts": "0.9.5",
+    "bitwise": "^2.0.4",
+    "dotenv": "^8.1.0"
   },
   "devDependencies": {
-    "axios": "^0.19.0"
+    "axios": "^0.19.0",
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-typescript": "^7.7.2",
+    "@types/chai": "^4.2.3",
+    "@types/dotenv": "^6.1.1",
+    "@types/eslint": "^6.1.1",
+    "@types/faker": "^4.1.7",
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.8",
+    "@types/supertest": "^2.0.8",
+    "@typescript-eslint/eslint-plugin": "^2.3.1",
+    "@typescript-eslint/parser": "^2.3.1",
+    "babel-jest": "^24.9.0",
+    "eslint": "^6.4.0",
+    "faker": "^4.1.0",
+    "jest": "^24.9.0",
+    "shelljs": "^0.8.3",
+    "supertest": "^4.0.2",
+    "ts-jest": "^24.1.0",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "dev": "react-scripts start --mode development"
+    "dev": "react-scripts start --mode development",
+    "test": "jest --forceExit --coverage --verbose",
+    "test-debug": "node --inspect node_modules/.bin/jest --runInBand",
+    "build-test": "react-scripts test --env=jsdom"
   }
 }

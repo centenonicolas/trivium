@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import trivium from './trivium.svg';
 import './App.css';
-import SimpleReactFileUpload from "./FileUploader";
+import FileUploader from "./Uploader/FileUploader";
 
 class App extends Component {
   render() {
@@ -16,7 +16,7 @@ class App extends Component {
         {/*  To get started, edit <code>src/App.js</code> and save to reload.*/}
         {/*</p>*/}
         <textarea/>
-        <SimpleReactFileUpload></SimpleReactFileUpload>
+        <FileUploader></FileUploader>
       </div>
     );
   }
