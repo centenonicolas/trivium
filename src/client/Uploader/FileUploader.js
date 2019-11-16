@@ -24,18 +24,21 @@ class FileUploader extends React.Component {
     }
     fileUpload(file){
         //todo meter url del back
-        const url = 'http://example.com/file-upload';
+        // const url = 'http://example.com/file-upload';
+        const url = '/encrypt';
         const formData = new FormData();
-        formData.append('file',file)
+        formData.append('file',file);
         const config = {
             headers: {
                 'content-type': 'multipart/form-data'
             }
-        }
-        return  axios.post(url, formData,config).then(res => {
+        };
+        return  axios.post(url, formData).then(res => {
             console.log(res.statusText);
             debugger;
-        })
+        }, (error) => {
+            console.log(error)
+        });
         //todo va a tener un map con lo que quiera hacer con lo que devuelva el back (el file encriptado)
     }
 

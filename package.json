@@ -36,13 +36,15 @@
     "supertest": "^4.0.2",
     "ts-jest": "^24.1.0",
     "ts-node": "^8.4.1",
-    "typescript": "^3.6.3"
+    "typescript": "^3.6.3",
+    "express": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "dev": "react-scripts start --mode development",
+    "dev": "ts-node ./src/server/controller.ts",
+    "dev-start": "react-scripts start --mode development",
     "test": "jest --forceExit --coverage --verbose",
     "test-debug": "node --inspect node_modules/.bin/jest --runInBand",
     "build-test": "react-scripts test --env=jsdom"
