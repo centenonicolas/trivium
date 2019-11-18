@@ -58,7 +58,7 @@ const serverConfig = {
     },
     externals: [nodeExternals()],
     entry: {
-        'controller.tsx': path.resolve(__dirname, 'src/server/controller.tsx')
+        'controller.js': path.resolve(__dirname, 'src/server/controller.js')
     },
     module: {
         rules: rules
