@@ -2,31 +2,38 @@
 // import ReactDOMServer from 'react-dom/server';
 // import { UInt8 } from 'bitwise/types';
 import cors from "cors";
-import {cipher} from "./cipher";
-import {processFile} from "./fileCipher";
+import { cipher } from "./cipher";
+import multer from 'multer';
+import express from 'express';
 
-const express = require('express');
+const upload = multer({ storage: multer.memoryStorage() })
+const app = express();
+const port = Number(process.env['SERVER_PORT']) || 8080;
 
-const router = express();
-console.log("algo");
-const options:cors.CorsOptions = {
+const options: cors.CorsOptions = {
     allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "X-Access-Token"],
     credentials: true,
     methods: "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
     origin: "http://localhost:3000",
     preflightContinue: false
 };
-router.use(cors(options));
-router.get('/intro', (req, res) =>{
-    console.log("hola de nuevo");
-    res.send('Hello world');
-});
-router.get('/', (req, res) =>{
-    //todo
-});
-router.post('/', (req, res) => {
-    // processFile(req);
+
+app.use(cors(options));
+
+app.post('/encrypt', upload.single('file'), (req, res) => {
+    console.log('Encriptando');
+    const fileBuffer = req.file.buffer;
+    const iv = '1234567890'; // TODO: recibir iv por parametro o hacerlo random
+    const key = '1234567890'; // TODO: recibir key por parametro
+    if (iv.length != 10 && key.length != 10) {
+        return res.status(400)
+            .json({ error: 'Key and IV should have 10 characters (80 bits)' });
+    }
+
+    const cipheredFile = cipher(fileBuffer, key, iv);
+
+    res.status(200).attachment('ciphered_data.ciph').send(cipheredFile);
 });
 
-router.options("*", cors(options));
-router.listen(3001);
+app.options("*", cors(options));
+app.listen(port);
