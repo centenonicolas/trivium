@@ -1,5 +1,5 @@
 import React from 'react'
-import axios, { post } from 'axios';
+import axios from 'axios';
 
 class FileUploader extends React.Component {
 
@@ -25,20 +25,27 @@ class FileUploader extends React.Component {
     fileUpload(file){
         //todo meter url del back
         // const url = 'http://example.com/file-upload';
-        const url = '/encrypt';
+        const url = 'http://localhost:3001/';
         const formData = new FormData();
+        console.log(file);
         formData.append('file',file);
+        console.log(formData);
         const config = {
             headers: {
-                'content-type': 'multipart/form-data'
+                'content-type': 'multipart/form-data',
             }
         };
-        return  axios.post(url, formData).then(res => {
+        return  axios.post(url, formData, config).then(res => {
             console.log(res.statusText);
             debugger;
         }, (error) => {
             console.log(error)
         });
+        // return axios.get(url, config).then(res => {
+        //     debugger;
+        //     console.log("asdas");
+        //     console.log(res)
+        // });
         //todo va a tener un map con lo que quiera hacer con lo que devuelva el back (el file encriptado)
     }
 

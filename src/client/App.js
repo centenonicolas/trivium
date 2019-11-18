@@ -1,15 +1,8 @@
-// import React, { Component } from 'react';
-// import logo from './logo.svg';
-// import trivium from './trivium.svg';
-// import './App.css';
-// import FileUploader from "./Uploader/FileUploader";
+import React, { Component } from 'react';
+import trivium from './trivium.svg';
+import './App.css';
+import FileUploader from "./Uploader/FileUploader";
 
-const React = require('react');
-const { Component }= require('react');
-const logo= require('./logo.svg');
-const trivium= require('./trivium.svg');
-const app = require('./App.css');
-const FileUploader = require("./Uploader/FileUploader");
 
 class App extends Component {
   render() {
