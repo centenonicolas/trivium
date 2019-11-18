@@ -3,9 +3,9 @@ import * as trivium from "./trivium";
 import * as utils from "./utils";
 
 export function cipher(data: Buffer, key: string, iv: string): Buffer {
-  // if (key.length !== 10 || iv.length !== 10) {
-  //   throw new TypeError("Key and IV length should be 10");
-  // }
+  if (key.length !== 10 || iv.length !== 10) {
+    throw new TypeError("Key and IV length should be 10");
+  }
 
   const keyBitarray = utils.hexToBitArray(key);
   const ivBitarray = utils.hexToBitArray(iv);
