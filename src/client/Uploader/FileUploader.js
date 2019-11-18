@@ -7,7 +7,7 @@ class FileUploader extends React.Component {
         super(props);
         this.state ={
             file:null
-        }
+        };
         this.onFormSubmit = this.onFormSubmit.bind(this)
         this.onChange = this.onChange.bind(this)
         this.fileUpload = this.fileUpload.bind(this)
@@ -24,12 +24,10 @@ class FileUploader extends React.Component {
     }
     fileUpload(file){
         //todo meter url del back
-        // const url = 'http://example.com/file-upload';
-        const url = 'http://localhost:3001/';
+        const url = 'http://localhost:8080/encrypt';
         const formData = new FormData();
-        console.log(file);
         formData.append('file',file);
-        console.log(formData);
+        formData.append('key', this.props.keyString);
         const config = {
             headers: {
                 'content-type': 'multipart/form-data',
@@ -41,18 +39,12 @@ class FileUploader extends React.Component {
         }, (error) => {
             console.log(error)
         });
-        // return axios.get(url, config).then(res => {
-        //     debugger;
-        //     console.log("asdas");
-        //     console.log(res)
-        // });
-        //todo va a tener un map con lo que quiera hacer con lo que devuelva el back (el file encriptado)
     }
 
     render() {
         return (
             <form onSubmit={this.onFormSubmit}>
-                <h1>File Upload</h1>
+                <h1>File to encrypt</h1>
                 <input type="file" onChange={this.onChange} />
                 <button type="submit">encrypt</button>
             </form>

@@ -2,9 +2,40 @@ import React, { Component } from 'react';
 import trivium from './trivium.svg';
 import './App.css';
 import FileUploader from "./Uploader/FileUploader";
+import axios from "axios";
 
 
 class App extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state ={
+            key:""
+        };
+        this.onChange = this.onChange.bind(this)
+    }
+    fileUpload(file, key){
+        //todo meter url del back
+        const url = 'http://localhost:8080/encrypt';
+        const formData = new FormData();
+        formData.append('file',file);
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data',
+            }
+        };
+        return  axios.post(url, formData, config).then(res => {
+            console.log(res.statusText);
+            debugger;
+        }, (error) => {
+            console.log(error)
+        });
+    }
+
+    onChange(event){
+        this.setState({key:event.target.value})
+    }
+
   render() {
       console.log("hola");
     return (
@@ -13,11 +44,14 @@ class App extends Component {
           <img src={trivium} className="App-logo" alt="trivium" />
           <h2>Welcome to Trivium encoder / decoder</h2>
         </div>
+          <div>
+              <p> Ingrese la llave del mensaje</p>
+              <input type="text" name="keyValue" onChange={e=> this.onChange(e)}/>
+          </div>
         {/*<p className="App-intro">*/}
         {/*  To get started, edit <code>src/App.js</code> and save to reload.*/}
         {/*</p>*/}
-        <textarea/>
-        <FileUploader/>
+        <FileUploader keyString={this.state.key}/>
       </div>
     );
   }
