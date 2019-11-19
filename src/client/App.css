@@ -18,6 +18,16 @@
   font-size: large;
 }
 
+.label-margin {
+  margin: 25px 0 0 10px;
+}
+
+.icon {
+  background: url('../client/key.svg');
+  padding: 0 10px 8px 15px;
+  /* Other styles here */
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

@@ -45,8 +45,11 @@ class App extends Component {
           <h2>Welcome to Trivium encoder / decoder</h2>
         </div>
           <div>
-              <p> Ingrese la llave del mensaje</p>
-              <input type="text" name="keyValue" onChange={e=> this.onChange(e)}/>
+              <span className="icon"/>
+              <span className="label-margin">
+                  Ingrese la llave del mensaje
+              </span>
+              <input className="label-margin" type="text" name="keyValue" onChange={e=> this.onChange(e)}/>
           </div>
         {/*<p className="App-intro">*/}
         {/*  To get started, edit <code>src/App.js</code> and save to reload.*/}
