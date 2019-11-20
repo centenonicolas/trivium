@@ -36,8 +36,9 @@ class FileUploader extends React.Component {
             const reader = new FileReader();
             reader.readAsDataURL(blob);
             const link = document.createElement('a');
+            const fileName = file.name.includes(".ciph") ? file.name.replace(".ciph", "") : file.name.concat(".ciph");
             link.href=window.URL.createObjectURL(blob);
-            link.download=`${file.name}.ciph`;
+            link.download=`${fileName}`;
             link.click();
         }
     }

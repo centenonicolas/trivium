@@ -19,12 +19,12 @@
 }
 
 .label-margin {
-  margin: 25px 0 0 10px;
+  margin: 25px 0 0 5px;
 }
 
 .icon {
   background: url('../client/key.svg');
-  padding: 0 10px 8px 15px;
+  padding: 3px 10px 2px 12px;
   /* Other styles here */
 }
 
