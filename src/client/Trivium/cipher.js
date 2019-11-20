@@ -1,9 +1,11 @@
 import * as trivium from "./trivium";
 import * as utils from "./utils";
 
+export class KeyLengthError extends TypeError { }
+
 export function cipher(data, key, iv) {
   if (key.length !== 10 || iv.length !== 10) {
-    throw new TypeError("Key and IV length should be 10");
+    throw new KeyLengthError("Key and IV length should be 10");
   }
 
   const keyBitarray = utils.hexToBitArray(key);

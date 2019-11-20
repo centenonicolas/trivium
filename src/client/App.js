@@ -35,8 +35,8 @@ class App extends Component {
           <span className="label-margin">
             Ingrese la clave e IV del mensaje
               </span>
-          <input className="label-margin" type="text" placeholder="Clave" name="keyValue" onChange={e => this.onKeyChange(e)} />
-          <input className="label-margin" type="text" placeholder="Vector de inicialización" name="ivValue" onChange={e => this.onIvChange(e)} />
+          <input className="label-margin" type="text" placeholder="Clave (10)" name="keyValue" onChange={e => this.onKeyChange(e)} />
+          <input className="label-margin" type="text" placeholder="Vector de inicialización (10)" name="ivValue" onChange={e => this.onIvChange(e)} />
         </div>
         {/*<p className="App-intro">*/}
         {/*  To get started, edit <code>src/App.js</code> and save to reload.*/}

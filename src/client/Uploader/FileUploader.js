@@ -1,6 +1,6 @@
 import React from 'react'
 import './FileUploader.css';
-import { cipherBmp } from '../Trivium/cipher';
+import { cipherBmp, KeyLengthError } from '../Trivium/cipher';
 const Buffer = require('buffer/').Buffer;
 
 class FileUploader extends React.Component {
@@ -15,17 +15,30 @@ class FileUploader extends React.Component {
         this.onFormSubmit = this.onFormSubmit.bind(this)
         this.onChange = this.onChange.bind(this)
     }
-    async onFormSubmit(e) {
+    onFormSubmit(e) {
         e.preventDefault(); // Stop form submit
 
-        const arrayBuffer = await this.state.file.arrayBuffer();
-        const encrypted = cipherBmp(Buffer.from(arrayBuffer), this.props.keyString, this.props.ivString);
+        if (!this.state.file) {
+            window.alert('Debe cargar un archivo');
+            return;
+        }
 
-        this.setState({
-            downloadDisable: false,
-            ciphered: new Blob([encrypted])
-        })
+        this.state.file.arrayBuffer()
+            .then(arrayBuffer => {
+                const encrypted = cipherBmp(Buffer.from(arrayBuffer), this.props.keyString, this.props.ivString)
+                this.setState({
+                    downloadDisable: false,
+                    ciphered: new Blob([encrypted])
+                })
+            }).catch(err => {
+                if (err instanceof KeyLengthError) {
+                    window.alert('La clave y el vector de inicialización deben tener 10 caracteres');
+                } else {
+                    console.log(err);
+                }
+            })
     }
+
     onChange(e) {
         this.setState({ file: e.target.files[0] })
     }
@@ -33,8 +46,8 @@ class FileUploader extends React.Component {
         if (file !== null) {
             const link = document.createElement('a');
             const fileName = file.name.includes(".ciph") ? file.name.replace(".ciph", "") : file.name.concat(".ciph");
-            link.href=window.URL.createObjectURL(cipherData);
-            link.download=`${fileName}`;
+            link.href = window.URL.createObjectURL(cipherData);
+            link.download = `${fileName}`;
             link.click();
         }
     }
