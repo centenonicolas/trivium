@@ -45,6 +45,9 @@ class FileUploader extends React.Component {
             link.href = window.URL.createObjectURL(cipherData);
             link.download = `${fileName}`;
             link.click();
+            this.setState({
+                downloadDisable: true
+            });
         }
     }
 
