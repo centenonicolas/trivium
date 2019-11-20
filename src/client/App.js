@@ -23,12 +23,11 @@ class App extends Component {
   }
 
   render() {
-    console.log("hola");
     return (
       <div className="App">
         <div className="App-header">
           <img src={trivium} className="App-logo" alt="trivium" />
-          <h2>Welcome to Trivium encoder / decoder</h2>
+          <h2>Bienvenido a Trivium encoder / decoder</h2>
         </div>
         <div>
           <span className="icon" />

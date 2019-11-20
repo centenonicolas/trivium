@@ -29,13 +29,9 @@ class FileUploader extends React.Component {
                 this.setState({
                     downloadDisable: false,
                     ciphered: new Blob([encrypted])
-                })
+                });
             }).catch(err => {
-                if (err instanceof KeyLengthError) {
-                    window.alert('La clave y el vector de inicialización deben tener 10 caracteres');
-                } else {
-                    console.log(err);
-                }
+                window.alert('La clave y el vector de inicialización deben tener 10 caracteres');
             })
     }
 
@@ -56,11 +52,11 @@ class FileUploader extends React.Component {
         return (
             <div>
                 <form onSubmit={this.onFormSubmit}>
-                    <h1>File to encrypt</h1>
+                    <h1>Archivo a encriptar</h1>
                     <input type="file" onChange={this.onChange} />
-                    <button type="submit">encrypt</button>
+                    <button type="submit">Encriptar</button>
                 </form>
-                <button className='downloadButton' type="button" disabled={this.state.downloadDisable} onClick={() => this.onClick(this.state.file, this.state.ciphered)}> download Ciphered file </button>
+                <button className='downloadButton' type="button" disabled={this.state.downloadDisable} onClick={() => this.onClick(this.state.file, this.state.ciphered)}> Descargar archivo </button>
             </div>
         )
     }
