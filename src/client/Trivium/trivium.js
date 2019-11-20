@@ -1,9 +1,9 @@
+"use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const bitwise_1 = __importDefault(require("bitwise"));
-const Buffer = require('buffer/').Buffer;
 function fillInternalState(key, initializationVector) {
     const state = [];
     for (let i = 0; i < 80; i++) {
@@ -31,7 +31,7 @@ function fillInternalState(key, initializationVector) {
 exports.fillInternalState = fillInternalState;
 function shiftAndReplace(state, replace, start, end) {
     for (let i = end - 1; i >= start; i--) {
-        if (i === start) {
+        if (i == start) {
             state[i] = replace;
         }
         else {

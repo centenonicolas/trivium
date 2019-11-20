@@ -1,3 +1,4 @@
+"use strict";
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
@@ -8,7 +9,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const trivium = __importStar(require("./trivium"));
 const utils = __importStar(require("./utils"));
-const Buffer = require('buffer/').Buffer;
 function cipher(data, key, iv) {
     if (key.length !== 10 || iv.length !== 10) {
         throw new TypeError("Key and IV length should be 10");
@@ -25,4 +25,12 @@ function cipher(data, key, iv) {
     return cipherBuffer;
 }
 exports.cipher = cipher;
+function cipherBmp(data, key, iv) {
+    const BMP_HEADER_SIZE = 54;
+    const header = data.slice(0, BMP_HEADER_SIZE);
+    const payload = data.slice(BMP_HEADER_SIZE);
+    const cipheredPayload = cipher(payload, key, iv);
+    return Buffer.concat([header, cipheredPayload]);
+}
+exports.cipherBmp = cipherBmp;
 //# sourceMappingURL=cipher.js.map

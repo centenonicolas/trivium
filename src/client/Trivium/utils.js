@@ -1,3 +1,4 @@
+"use strict";
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
@@ -7,7 +8,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const bitwise = __importStar(require("bitwise"));
-const Buffer = require('buffer/').Buffer;
 function toBitarray(string) {
     const buffer = Buffer.from(string);
     return bitwise.buffer.read(buffer);

@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import './FileUploader.css';
-import { cipher } from '../Trivium/cipher';
+import { cipherBmp } from '../Trivium/cipher';
 const Buffer = require('buffer/').Buffer;
 
 class FileUploader extends React.Component {
@@ -22,7 +22,7 @@ class FileUploader extends React.Component {
 
         const arrayBuffer = await this.state.file.arrayBuffer();
         debugger
-        const encrypted = cipher(Buffer.from(arrayBuffer), '1234567890', '1234567890');
+        const encrypted = cipherBmp(Buffer.from(arrayBuffer), '1234567890', '1234567890');
 
         console.log();
         this.setState({
