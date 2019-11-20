@@ -4,9 +4,8 @@
 // import './index.css';
 
 const React = require('react');
-const ReactDOM =require('react-dom');
-const App =require('./App');
-const index = './index.css';
+const ReactDOM = require('react-dom');
+const App = require('./App');
 
 ReactDOM.render(
   <App />,
