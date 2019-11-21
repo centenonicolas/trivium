@@ -43,7 +43,7 @@ export function shiftAndReplace(state, replace, start, end) {
 export function initializeInternalState(key, initializationVector) {
   const state = fillInternalState(key, initializationVector);
 
-  for (let i = 1; i < 4 * 288; i++) {
+  for (let i = 1; i <= 4 * 288; i++) {
     const t1 = state[65] ^ (state[90] & state[91]) ^ state[92] ^ state[170];
     const t2 = state[161] ^ (state[174] & state[175]) ^ state[176] ^ state[263];
     const t3 = state[242] ^ (state[285] & state[286]) ^ state[287] ^ state[68];
@@ -77,7 +77,7 @@ function nextState(state) {
 export function nextByte(state) {
   const byte = new Array(8);
 
-  for (let i = 1; i < 8; i++) {
+  for (let i = 0; i < 8; i++) {
     const key = nextState(state);
     byte[i] = key;
   }

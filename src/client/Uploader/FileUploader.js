@@ -1,6 +1,6 @@
 import React from 'react'
 import './FileUploader.css';
-import { cipherBmp, KeyLengthError } from '../Trivium/cipher';
+import { cipherBmp } from '../Trivium/cipher';
 const Buffer = require('buffer/').Buffer;
 
 class FileUploader extends React.Component {
